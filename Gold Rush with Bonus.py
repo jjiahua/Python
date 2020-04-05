@@ -1,4 +1,11 @@
+# This program was created on 4/4/20 by Jiahua Huang
+# This program is a game dubbed Gold Rush.
+# It is a game of chance where the player has
+# to last long weeks betting on their chances to earn money.
 from random import *
+
+# The code is straightforward and internal comments from the code without Bonus
+# should make the idea clear
 
 # Total money in the bank at the beginning of the game
 amount = 3000
@@ -9,15 +16,15 @@ print("Your amount is:" + " $" + str(amount))
 
 week = 0
 count = 1
+# random choice of a thief
 thieves = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
 totalMoneyBorrowed = 0
 interestRate = 0.3
 interest = 0
 invalid_input = False
 while True:
-    # Check them remain money is enough or not to continue the game.
 
-    # every time there is an input resembles the beginning of a new week
+    # Display
     print("Week " + str(count))
     print("*Bank: $" + str(round(amount, 2)))
     print("*Borrowed: $" + str(round(totalMoneyBorrowed, 2)))
@@ -26,6 +33,7 @@ while True:
 
     print("Enter the amount you want to borrow from the bank, the maximum amount is $500, interest rate is 30% weekly")
     while True:
+        # application of borrowing money
         moneyBorrowed = int(input())
         if moneyBorrowed > 500 or moneyBorrowed < 0:
             print("Invalid Input. Enter again.")
@@ -33,7 +41,7 @@ while True:
             totalMoneyBorrowed = totalMoneyBorrowed + moneyBorrowed
             amount = amount + moneyBorrowed
             break
-    # Display the total money in the bank; Get user site option input
+
     if amount < supplyCostWeekly:
         amount = round(amount, 2)
         print("Sorry, you do not have enough money to play. Your amount of cash is: $" + str(
@@ -59,16 +67,16 @@ while True:
                 week = week + 1
                 amount = amount - supplyCostWeekly
                 break
-    except ValueError:  # what is the problem?
+    except ValueError:
         print("Your current desire to play the game is lost. The game has ended.\n Your amount of cash is: $" + str(
             amount) + " You lasted for " + str(week) + " weeks.")
         print("Game Over!!!")
         break
-    # money taken away at the beginning of each week
+
+    # Get a rand number between 1 and 10 inclusive. Use rand number to get the probability
 
     chance = randint(1, 10)
     if siteDecision == 1:  # Lucky Clover
-        # Get a rand number between 1 and 10 inclusive. Use rand number to get the probability
 
         # 10% chance at $1000 payload
         if chance == 1:
@@ -80,7 +88,7 @@ while True:
             print("You increased $500!")
             print("Your bank amount is:" + " $" + str(amount))
         else:
-            # 60% chance of losing half of money#random.
+            # pick a thief option from list
             thiefOption = randint(0, 9)
             moneyLose = round(amount * thieves[thiefOption], 2)
             amount = amount - moneyLose
@@ -88,7 +96,6 @@ while True:
     elif siteDecision == 2:  # Diamond Mine
 
         if chance <= 2:
-            # The purpose of the code is found on the print statements.
             amount = amount + 800
             print("Congratulations, you increased $800!")
             print("Your bank amount is:" + " $" + str(amount))
@@ -117,6 +124,6 @@ while True:
             amount = amount + 300
             print("You earned 300 dollars!")
             print("Your bank amount is:" + " $" + str(amount))
-
+    # naturally, interest needs to be calculated
     interest = round(totalMoneyBorrowed * interestRate, 2)
     amount = amount - interest

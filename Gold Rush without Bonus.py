@@ -1,3 +1,7 @@
+# This program was created on 4/4/20 by Jiahua Huang
+# This program is a game dubbed Gold Rush.
+# It is a game of chance where the player has
+# to last long weeks betting on their chances to earn money.
 from random import *
 
 # Total money in the bank at the beginning of the game
@@ -9,17 +13,19 @@ print("Your amount is:" + " $" + str(amount))
 
 week = 0
 count = 1
+# a trigger for invalid input.
+# False is active since there are no invalid inputs initially.
 invalid_input = False
 
 while True:
-    # Check them remain money is enough or not to continue the game.
+    # Check if the remainder of the money is enough to continue the game.
     if amount < supplyCostWeekly:
         print("Sorry, you do not have enough money to play. Your amount of cash is: $" + str(
             amount) + " You lasted for " + str(week) + " weeks.")
         print("Game Over!!!")
         break
     if invalid_input is False:
-        # every time there is an input resembles the beginning of a new week
+        # every time there is an input, resembles the beginning of a new week
         print("Week " + str(count))
         # Display the total money in the bank; Get user site option input
         print("--------------Bank: $" + str(amount) + " --------------")
@@ -32,7 +38,7 @@ while True:
         print("Once you have entered an input, it will begin your week.")
 
     try:
-
+        # idea is straight forward based on what's read on the print function above
         siteDecision = int(input())
         if 0 < siteDecision <= 3:
             count = count + 1
