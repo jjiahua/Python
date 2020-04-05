@@ -5,6 +5,7 @@
 #  Must look identical to sample program below.
 
 end_program = False
+invalid_input = False
 print("Welcome to Toys R’us!")
 while end_program is False:
     new_customer = False
@@ -13,24 +14,30 @@ while end_program is False:
 
     while new_customer is False and end_program is False:
         while True:
-            item = input("What is your item? ")
-            cost = float(input("How much does it cost? $"))
+            if invalid_input is False:
+                item = input("What is your item? ")
+                cost = float(input("How much does it cost? $"))
+            else:
+                invalid_input = False
+                cost = float(input())
             if cost > 10:
-                cost = cost*1.13
+                cost = cost * 1.13
                 break
             elif 0 <= cost <= 10:
                 break
             else:
-                print("Invalid input Enter again.")
+                invalid_input = True
+                print("Invalid response. Enter again.", end=" ")
+
         cost = round(cost, 2)
         total = total + cost
-        print("Your item costs $"+str(cost))
+        print("Your item costs $" + str(cost))
         anymore = input("Are you buying any other toys (Y/N)? ")
         while end_program is False and new_customer is False:
             if anymore == "y" or anymore == "Y":
                 break
             elif anymore == "n" or anymore == "N":
-                print("Your total bill comes to $"+str(round(total, 2)))
+                print("Your total bill comes to $" + str(round(total, 2)))
                 moreCustomers = input("Are there any other customers (Y/N)? ")
                 while True:
                     if moreCustomers == "y" or moreCustomers == "Y":

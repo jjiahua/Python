@@ -1,4 +1,4 @@
-# This program is question 3 assignment
+#3
 
 # The total cost for all customers
 total_cost = 0
@@ -9,7 +9,7 @@ total_calls = 0
 # The total minutes for all calls of all customers
 total_minutes = 0
 
-# The particular customer total cost
+# The particular customer total price
 customer_price = 0
 
 invalid_input = False
