@@ -11,10 +11,16 @@ total_minutes = 0
 
 # The particular customer total cost
 customer_price = 0
+
+invalid_input = False
 while True:  # loop 2
     escape_loop1 = False
     escape_loop2 = False
-    minutes = int(input("Please input the number of minutes in a call?\n"))
+    if invalid_input is False:
+        minutes = int(input("Please input the number of minutes in a call?\n"))
+    else:
+        minutes = int(input())
+        invalid_input = False
 
     if minutes > 0:
         total_calls = total_calls + 1
@@ -52,17 +58,18 @@ while True:  # loop 2
                         escape_loop2 = True
                         break
                     else:
-                        print("Invalid input. Please enter a correct value")
-                        isMore = input("Are there any more customers? Y/N")
+                        print("Invalid input. Please enter a correct value", end=" ")
+                        isMore = input()
             else:
-                print("Invalid input")
-                retry = input("Do you want to call again? Y/N?")
+                print("Invalid input, Enter again.", end=" ")
+                retry = input()
             if escape_loop1 is True:
                 break
         if escape_loop2 is True:
             break
 
     else:
-        print("Your input is invalid. Enter again.")
+        print("Your input is invalid. Enter again.", end=" ")
+        invalid_input = True
 
 
